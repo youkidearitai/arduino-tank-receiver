@@ -9,7 +9,8 @@
 #include <SoftwareSerial.h>
 #include <stdlib.h>
 
-#define READBUFFERSIZE 256 // バッファのサイズ
+// バッファのサイズ
+#define BUFFERSIZE 128
 
 // 送信パラメーターの左右のデリミタとして使用
 // ex 411,233
@@ -17,7 +18,7 @@
 
 SoftwareSerial g_serial( 7, 6 );
 
-char g_buffer[READBUFFERSIZE] = ""; // バッファ
+char g_buffer[BUFFERSIZE] = ""; // バッファ
 int  g_indexCounter = 0; // バッファを格納するときに使用するキー
 
 /*
@@ -156,10 +157,10 @@ void cwOrCcw(int in1, int in2, int spd) {
  * main loop
  */
 void loop() {
-  char result[READBUFFERSIZE];
+  char result[BUFFERSIZE];
   int left = 0, right = 0;
 
-  if (!readCommandString(g_indexCounter, result, g_buffer, READBUFFERSIZE)) {
+  if (!readCommandString(g_indexCounter, result, g_buffer, BUFFERSIZE)) {
     return;
   }
   
