@@ -14,7 +14,7 @@
 
 // 送信パラメーターの左右のデリミタとして使用
 // ex 411,233
-#define DELIMITER (",")
+#define DELIMITER ","
 
 SoftwareSerial g_serial( 7, 6 );
 
