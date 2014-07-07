@@ -16,6 +16,11 @@
 // ex 411,233
 #define DELIMITER ","
 
+// 送信パラメーターの終了として使用
+// ex 411,233CRLF
+#define CR '\r'
+#define LF '\n'
+
 SoftwareSerial g_serial( 7, 6 );
 
 char g_buffer[BUFFERSIZE] = ""; // バッファ
@@ -52,12 +57,12 @@ int readCommandString(int &index, char tmpString[], char result[], const int tmp
   char c;  
   while ((c = g_serial.read()) != -1) {
     switch (c) {
-    case '\r':
+    case CR:
       tmpString[index++] = '\0';
       strncpy(result, tmpString, index + 1);
       index = 0;
       return 1;
-    case '\n':
+    case LF:
       break;
     default:
       if (index < tmpStringSize - 1) {
