@@ -23,8 +23,8 @@
 
 SoftwareSerial g_serial( 7, 6 );
 
-char g_buffer[BUFFERSIZE] = ""; // バッファ
-int  g_indexCounter = 0; // バッファを格納するときに使用するキー
+// 入力待ちをするためのバッファ
+char buffer[BUFFERSIZE];
 
 /*
  * setup
@@ -46,27 +46,28 @@ void setup() {
 /*
  * シリアル通信で取得した値を読み込む
  * 0で取得中
- * 1で取得完了、resultに格納する
+ * 1で取得完了
  *
- * index バッファのインデックス
- * tmpString バッファ
  * result 取得する値を格納する先
  * tmpStringSize バッファの最大サイズ
  */
-int readCommandString(int &index, char tmpString[], char result[], const int tmpStringSize) {
-  char c;  
+int readCommandString(char result[], const int tmpStringSize) {
+  static int index = 0;
+  char c;
+  char *tmp = &result[index];
+  
   while ((c = g_serial.read()) != -1) {
     switch (c) {
     case CR:
-      tmpString[index++] = '\0';
-      strncpy(result, tmpString, index + 1);
+      break;
+    case LF:
+      *tmp++ = '\0';
       index = 0;
       return 1;
-    case LF:
-      break;
     default:
-      if (index < tmpStringSize - 1) {
-        tmpString[index++] = c;
+      if (index < tmpStringSize) {
+        *tmp++ = c;
+        index++;
       }
     }
   }
@@ -162,17 +163,16 @@ void cwOrCcw(int in1, int in2, int spd) {
  * main loop
  */
 void loop() {
-  char result[BUFFERSIZE];
   int left = 0, right = 0;
 
-  if (!readCommandString(g_indexCounter, result, g_buffer, BUFFERSIZE)) {
+  if (!readCommandString(buffer, BUFFERSIZE)) {
     return;
   }
   
   emptyBuffer();
   delay(10);
 
-  analyzeMotor(result, left, right);
+  analyzeMotor(buffer, left, right);
   cwOrCcw(3, 5, left);
   cwOrCcw(10, 11, right);
   
