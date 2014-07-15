@@ -6,10 +6,10 @@ Arduino‚ðŽg‚Á‚ÄAƒ‰ƒWƒRƒ“‚ðì‚è‚Ü‚µ‚½B‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÍƒVƒŠƒAƒ‹’ÊM‚Å‘—‚ç‚ê‚Ä‚«‚
 
 ### ƒpƒ‰ƒ[ƒ^[
 
-“®ì | ƒpƒ‰ƒ[ƒ^[
------+-----
-cw   | 511
-stop | 256
-ccw  | 1
-brake| 0
+“®ì|ƒpƒ‰ƒ[ƒ^[
+----+-----
+cw|511
+stop|256
+ccw |1
+brake|0
 
