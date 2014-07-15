@@ -1,12 +1,12 @@
 ## Arduino Tank Receiver
 
-Arduino‚ðŽg‚Á‚ÄAƒ‰ƒWƒRƒ“‚ðì‚è‚Ü‚µ‚½B‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÍƒVƒŠƒAƒ‹’ÊM‚Å‘—‚ç‚ê‚Ä‚«‚½ƒpƒ‰ƒ[ƒ^[‚ðƒ‚[ƒ^[ƒhƒ‰ƒCƒo[‚Ö“`‚¦‚é‚½‚ß‚Ì‚à‚Ì‚Å‚·B
+Arduinoã‚’ä½¿ã£ã¦ã€ãƒ©ã‚¸ã‚³ãƒ³ã‚’ä½œã‚Šã¾ã—ãŸã€‚ã“ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯ã‚·ãƒªã‚¢ãƒ«é€šä¿¡ã§é€ã‚‰ã‚Œã¦ããŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ãƒ¢ãƒ¼ã‚¿ãƒ¼ãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã¸ä¼ãˆã‚‹ãŸã‚ã®ã‚‚ã®ã§ã™ã€‚
 
-Ú‚µ‚­‚Í‚±‚¿‚ç‚Ü‚ÅB <http://tekitoh-memdhoi.info/views/609>
+è©³ã—ãã¯ã“ã¡ã‚‰ã¾ã§ã€‚ <http://tekitoh-memdhoi.info/views/609>
 
-### ƒpƒ‰ƒ[ƒ^[
+### ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 
-“®ì|ƒpƒ‰ƒ[ƒ^[
+å‹•ä½œ|ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 ----+-----
 cw|511
 stop|256
