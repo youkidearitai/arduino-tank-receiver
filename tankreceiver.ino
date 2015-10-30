@@ -40,7 +40,7 @@ void setup() {
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
   pinMode(12, INPUT); // Bluetooth ステータス用
- 
+
   g_serial.begin(9600);
 }
 
@@ -58,6 +58,10 @@ int readCommandString(char result[], const int tmpStringSize) {
   char *tmp = &result[index];
   
   while ((c = g_serial.read()) != -1) {
+    if (lostConnectStop()) {
+      return 2;
+    }
+
     switch (c) {
     case CR:
       break;
@@ -164,14 +168,16 @@ void cwOrCcw(int in1, int in2, int spd) {
  * Bluetoothが接続されていないのならばモータードライバーの値を
  * stopに設定する
  */
-void lostConnectStop() {
+int lostConnectStop() {
   if (digitalRead(12)) {
-    return;
+    return 0;
   }
   
-  emptyBuffer();
   cwOrCcw(3, 5, 256);
   cwOrCcw(10, 11, 256);
+
+  completeCommandWrite(256, 256);  
+  return 1;
 }
 
 
@@ -180,16 +186,21 @@ void lostConnectStop() {
  */
 void loop() {
   int left = 0, right = 0;
-  
-  lostConnectStop();
 
-  if (!readCommandString(buffer, BUFFERSIZE)) {
+  if (lostConnectStop()) {
+    return;
+  }
+
+  if (readCommandString(buffer, BUFFERSIZE) != 1) {
     return;
   }
   
   emptyBuffer();
-  delay(10);
-
+  cwOrCcw(3, 5, 256);
+  cwOrCcw(10, 11, 256);
+  
+  delay(1);
+  
   analyzeMotor(buffer, left, right);
   cwOrCcw(3, 5, left);
   cwOrCcw(10, 11, right);
