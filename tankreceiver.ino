@@ -21,7 +21,7 @@
 #define CR '\r'
 #define LF '\n'
 
-SoftwareSerial g_serial( 7, 6 );
+SoftwareSerial g_serial( 6, 7 );
 
 // 入力待ちをするためのバッファ
 char buffer[BUFFERSIZE];
